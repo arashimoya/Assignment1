@@ -1,5 +1,8 @@
 @using LoginComponent
 @inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+
+
 
 <div class="page">
     <div class="sidebar">
@@ -10,11 +13,12 @@
     <div class="main">
         
             
-            <div class="top-row px-4">
-                <Login/>
-                <AuthorizeView><NotAuthorized><a href="/register">Not registered?</a></NotAuthorized></AuthorizeView>
-                
-            </div>
+        <div class="top-row px-4">
+            
+            <Login/>
+            <AuthorizeView><NotAuthorized><a href="/register">Not registered?</a></NotAuthorized></AuthorizeView>
+
+        </div>
             
         
 

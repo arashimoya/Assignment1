@@ -111,9 +111,14 @@ using Assignment1.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 55 "C:\Users\arasi\RiderProjects\Assignment1\Assignment1\Pages\AddAdult.razor"
+#line 58 "C:\Users\arasi\RiderProjects\Assignment1\Assignment1\Pages\AddAdult.razor"
        
+    
     private Adult newAdultItem = new Adult();
+    private string male = "M";
+    private string female = "F";
+    
+    
 
     private void AddNewAdult()
     {

@@ -9,18 +9,18 @@ namespace FileData
 {
     public class FileContext
     {
-        //public IList<Family> Families { get; private set; }
+       // public IList<Family> Families { get; private set; }
         public IList<Adult> Adults { get; private set; }
         public IList<User> Users { get; private set; }
 
-        //private readonly string familiesFile = "families.json";
+        private readonly string familiesFile = "families.json";
         private readonly string adultsFile = "adults.json";
         private readonly string usersFile = "users.json";
 
         public FileContext()
         {
-            //Families = File.Exists(familiesFile) ? ReadData<Family>(familiesFile) : new List<Family>();
-            Adults = File.Exists(adultsFile) ? ReadData<Adult>(adultsFile) : new List<Adult>();
+            //Families = File.Exists(familiesFile) ? ReadFamilyData<Family>(familiesFile) : new List<Family>();
+            Adults = File.Exists(adultsFile) ? ReadAdultData<Adult>(adultsFile) : new List<Adult>();
             Users = File.Exists(usersFile) ? ReadUserData<User>(usersFile) : new List<User>();
 
         }
@@ -34,29 +34,36 @@ namespace FileData
         }
 
 
-        private IList<T> ReadData<T>(string s)
+        private IList<T> ReadAdultData<T>(string s)
         {
-            //using (var jsonReader = File.OpenText(familiesFile))
             using (var jsonReader = File.OpenText(adultsFile))
             {
                 return JsonSerializer.Deserialize<List<T>>(jsonReader.ReadToEnd());
             }
             
         }
-        
-        
+
+        private IList<T> ReadFamilyData<T>(string s)
+        {
+            using (var jsonReader = File.OpenText(familiesFile))
+            {
+                return JsonSerializer.Deserialize<List<T>>(jsonReader.ReadToEnd());
+            }
+        }
+
+
         public void SaveChanges()
         {
             // storing families
-            /*string jsonFamilies = JsonSerializer.Serialize(Families, new JsonSerializerOptions
+           /* string jsonFamilies = JsonSerializer.Serialize(Families, new JsonSerializerOptions
             {
                 WriteIndented = true
             });
             using (StreamWriter outputFile = new StreamWriter(familiesFile, false))
             {
                 outputFile.Write(jsonFamilies);
-            }
-            */
+            }*/
+            
             
             
             // storing persons

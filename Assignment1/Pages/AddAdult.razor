@@ -38,7 +38,10 @@
         </div>
     <div class="form-group">
         Sex:<br/>
-        <InputText @bind-Value="newAdultItem.Sex"/>
+        <InputRadioGroup name="Sex" @bind-Value="newAdultItem.Sex">
+            <InputRadio Name="Sex" Value="female"/> Female
+            <InputRadio Name="Sex" Value="male"/> Male
+        </InputRadioGroup>
     </div>
     <div class="form-group">
         Job Title:<br/>
@@ -53,7 +56,12 @@
         </p>
 </EditForm>
 @code {
+    
     private Adult newAdultItem = new Adult();
+    private string male = "M";
+    private string female = "F";
+    
+    
 
     private void AddNewAdult()
     {

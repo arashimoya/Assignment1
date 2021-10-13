@@ -35,7 +35,8 @@ namespace Assignment1
             services.AddSingleton<IPersonService, PersonServiceImpl>();
             services.AddScoped<IUserService, UserServiceImpl>();
             services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
-            
+            //services.AddSingleton<IFamilyService, FamilyServiceImpl>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

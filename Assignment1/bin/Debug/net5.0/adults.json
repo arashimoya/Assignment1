@@ -283,5 +283,35 @@
     "Weight": 112.5,
     "Height": 188,
     "Sex": "M"
+  },
+  {
+    "JobTitle": {
+      "JobTitle": "student",
+      "Salary": 0
+    },
+    "Id": 23,
+    "FirstName": "Wojtek",
+    "LastName": "Wilk",
+    "HairColor": "ubuyy",
+    "EyeColor": "uhyub",
+    "Age": 5,
+    "Weight": 22,
+    "Height": 2222,
+    "Sex": "M"
+  },
+  {
+    "JobTitle": {
+      "JobTitle": null,
+      "Salary": 0
+    },
+    "Id": 24,
+    "FirstName": "Adam\u0060",
+    "LastName": "Arasimowicz",
+    "HairColor": "piec",
+    "EyeColor": "szcz",
+    "Age": 200,
+    "Weight": 98,
+    "Height": 187,
+    "Sex": "M"
   }
 ]

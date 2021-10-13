@@ -119,7 +119,7 @@ using System.Threading;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 88 "C:\Users\arasi\RiderProjects\Assignment1\Assignment1\Pages\Adults.razor"
+#line 99 "C:\Users\arasi\RiderProjects\Assignment1\Assignment1\Pages\Adults.razor"
        
     private IList<Adult> adultsAll;
     private IList<Adult> adultsToShow;
@@ -153,6 +153,7 @@ using System.Threading;
         {
             filterByName = args.Value.ToString();
         }
+        
         catch (Exception e){ }
         ExecuteFilter();
     }
@@ -220,6 +221,11 @@ using System.Threading;
         {
             filterBySex = args.Value.ToString();
         }catch (Exception e){}
+        if (filterBySex.Equals("Both"))
+            filterBySex = "";
+        else if (filterBySex.Equals("Male")) filterBySex = "M";
+        else if (filterBySex.Equals("Female"))
+        filterBySex = "F";
         ExecuteFilter();
     }
 
@@ -227,12 +233,12 @@ using System.Threading;
     {
         adultsToShow = adultsAll.Where(a=>
             
-            (filterByName !=null && String.Format(a.FirstName+" "+a.LastName).Contains(filterByName) || filterByName == null ) 
+            (filterByName !=null && String.Format(a.FirstName+" "+a.LastName).Contains(filterByName, StringComparison.OrdinalIgnoreCase) || filterByName == null ) 
              
             
-            && (filterByHair!= null && a.HairColor.Contains(filterByHair) || filterByHair ==null)
+            && (filterByHair!= null && a.HairColor.Contains(filterByHair, StringComparison.OrdinalIgnoreCase) || filterByHair ==null)
             
-            && (filterByEye!= null && a.EyeColor.Contains(filterByEye) || filterByEye == null)
+            && (filterByEye!= null && a.EyeColor.Contains(filterByEye, StringComparison.OrdinalIgnoreCase) || filterByEye == null)
             
             && (filterByOlderThan !=null && a.Age >= filterByOlderThan || filterByOlderThan == null)
             
@@ -242,7 +248,7 @@ using System.Threading;
             
             && (filterByLighterThan !=null && a.Age <= filterByLighterThan || filterByLighterThan == null)
             
-            && (filterBySex!= null && a.Sex.Contains(filterBySex) || filterBySex == null)
+            && (filterBySex!= null && a.Sex.Contains(filterBySex, StringComparison.OrdinalIgnoreCase) || filterBySex == null)
             
             ).ToList();
     }

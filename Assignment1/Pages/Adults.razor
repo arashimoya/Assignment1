@@ -8,17 +8,28 @@
 <h3>Adults</h3>
 <button @onclick=@toggleSearch>Filter</button>
 <div hidden="@(!HideLabel)">
-    Filter by:
-    <input placeholder="name..." type="text" @oninput="((arg) => FilterByName(arg))" style="width: 200px"/>
-    <input placeholder="hair color..." type="text" @oninput="((arg) => FilterByHairColor(arg))" style="width:150px"/>
-    <input placeholder="eye color..." type="text" @oninput="((arg) => FilterByEyeColor(arg))" style="width:150px"/>
-    <input placeholder="older than..." type="number" @oninput="((arg) => FilterByOlderThan(arg))" style="width:100px"/>
-    <input placeholder="younger than..." type="number" @oninput="((arg) => FilterByYoungerThan(arg))" style="width:100px"/>
-    <input placeholder="heavier than..." type="number" @oninput="((arg) => FilterByHeavierThan(arg))" style="width:100px"/>
-    <input placeholder="lighter than..." type="number" @oninput="((arg) => FilterByLighterThan(arg))" style="width:100px"/>
-    <input placeholder="sex..." type="text" @oninput="((arg) => FilterBySex(arg))" style="width:50px"/>
-
-
+    <table class="table">
+        <tbody>
+        <tr>
+            
+            <td>Filter by:</td>
+            <td><input placeholder="name..." type="text" @oninput="((arg) => FilterByName(arg))" style="width: 200px"/></td>
+            <td><input placeholder="hair color..." type="text" @oninput="((arg) => FilterByHairColor(arg))" style="width:150px"/></td>
+            <td><input placeholder="eye color..." type="text" @oninput="((arg) => FilterByEyeColor(arg))" style="width:150px"/></td>
+            <td><input placeholder="older than..." type="number" @oninput="((arg) => FilterByOlderThan(arg))" style="width:100px"/></td>
+            <td><input placeholder="younger than..." type="number" @oninput="((arg) => FilterByYoungerThan(arg))" style="width:100px"/></td>
+            <td><input placeholder="heavier than..." type="number" @oninput="((arg) => FilterByHeavierThan(arg))" style="width:100px"/></td>
+            <td><input placeholder="lighter than..." type="number" @oninput="((arg) => FilterByLighterThan(arg))" style="width:100px"/></td>
+            <td>sex:
+            <select class="form-control selectpicker" @onchange="@((arg) => FilterBySex(arg))" style="width:100px">
+                <option>Both</option>
+                <option>Female</option>
+                <option>Male</option>
+            </select>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
 @if (adultsToShow == null)
@@ -118,6 +129,7 @@
         {
             filterByName = args.Value.ToString();
         }
+        
         catch (Exception e){ }
         ExecuteFilter();
     }
@@ -185,6 +197,11 @@
         {
             filterBySex = args.Value.ToString();
         }catch (Exception e){}
+        if (filterBySex.Equals("Both"))
+            filterBySex = "";
+        else if (filterBySex.Equals("Male")) filterBySex = "M";
+        else if (filterBySex.Equals("Female"))
+        filterBySex = "F";
         ExecuteFilter();
     }
 
@@ -192,12 +209,12 @@
     {
         adultsToShow = adultsAll.Where(a=>
             
-            (filterByName !=null && String.Format(a.FirstName+" "+a.LastName).Contains(filterByName) || filterByName == null ) 
+            (filterByName !=null && String.Format(a.FirstName+" "+a.LastName).Contains(filterByName, StringComparison.OrdinalIgnoreCase) || filterByName == null ) 
              
             
-            && (filterByHair!= null && a.HairColor.Contains(filterByHair) || filterByHair ==null)
+            && (filterByHair!= null && a.HairColor.Contains(filterByHair, StringComparison.OrdinalIgnoreCase) || filterByHair ==null)
             
-            && (filterByEye!= null && a.EyeColor.Contains(filterByEye) || filterByEye == null)
+            && (filterByEye!= null && a.EyeColor.Contains(filterByEye, StringComparison.OrdinalIgnoreCase) || filterByEye == null)
             
             && (filterByOlderThan !=null && a.Age >= filterByOlderThan || filterByOlderThan == null)
             
@@ -207,7 +224,7 @@
             
             && (filterByLighterThan !=null && a.Age <= filterByLighterThan || filterByLighterThan == null)
             
-            && (filterBySex!= null && a.Sex.Contains(filterBySex) || filterBySex == null)
+            && (filterBySex!= null && a.Sex.Contains(filterBySex, StringComparison.OrdinalIgnoreCase) || filterBySex == null)
             
             ).ToList();
     }
