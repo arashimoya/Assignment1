@@ -271,32 +271,17 @@
   },
   {
     "JobTitle": {
-      "JobTitle": "Unemployed",
-      "Salary": 0
+      "JobTitle": "Mechanic",
+      "Salary": 87676
     },
-    "Id": 19,
-    "FirstName": "Dan",
-    "LastName": "Pintea",
-    "HairColor": "Black",
-    "EyeColor": "hazel",
-    "Age": 87,
-    "Weight": 6,
-    "Height": 656,
-    "Sex": "Never"
-  },
-  {
-    "JobTitle": {
-      "JobTitle": null,
-      "Salary": 0
-    },
-    "Id": 20,
+    "Id": 21,
     "FirstName": "Adam",
-    "LastName": "Arasimopwicz",
-    "HairColor": "wryg8u",
-    "EyeColor": "ybuofv",
-    "Age": 20,
-    "Weight": 222,
-    "Height": 222,
-    "Sex": "never"
+    "LastName": "Bernacki",
+    "HairColor": "Brown",
+    "EyeColor": "Blue",
+    "Age": 22,
+    "Weight": 112.5,
+    "Height": 188,
+    "Sex": "M"
   }
 ]

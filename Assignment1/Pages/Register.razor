@@ -22,7 +22,7 @@
             <input type="password" placeholder="password" @bind-value="confirmPassword"/>
         </div>
         <div style="color:red">@errorMessage</div>
-        <a href="" @onclick="PerformRegister">
+        <a href="/register" @onclick="PerformRegister">
             Register
         </a>
     </NotAuthorized>
@@ -43,7 +43,7 @@
             username = "";
             password = "";
             confirmPassword = "";
-            NavigationManager.NavigateTo("/");
+            NavigationManager.NavigateTo("/register");
         }
         catch (Exception e)
         {

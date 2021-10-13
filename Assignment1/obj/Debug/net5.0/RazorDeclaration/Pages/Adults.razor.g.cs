@@ -103,6 +103,13 @@ using Assignment1.Data;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Users\arasi\RiderProjects\Assignment1\Assignment1\Pages\Adults.razor"
+using System.Threading;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/Adults")]
     public partial class Adults : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -112,14 +119,25 @@ using Assignment1.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 76 "C:\Users\arasi\RiderProjects\Assignment1\Assignment1\Pages\Adults.razor"
+#line 88 "C:\Users\arasi\RiderProjects\Assignment1\Assignment1\Pages\Adults.razor"
        
     private IList<Adult> adultsAll;
     private IList<Adult> adultsToShow;
 
     private string? filterByName;
-    
+    private string? filterByHair;
+    private string? filterByEye;
+    private int? filterByOlderThan;
+    private int? filterByYoungerThan;
+    private int? filterByHeavierThan;
+    private int? filterByLighterThan;
+    private string? filterBySex;
 
+    private bool HideLabel   {get;set;} = false;
+    private void toggleSearch()
+    {
+        HideLabel = !HideLabel;
+    }
     protected override async Task OnInitializedAsync()
     {
         adultsAll = new List<Adult>();
@@ -139,10 +157,94 @@ using Assignment1.Data;
         ExecuteFilter();
     }
 
+    private void FilterByHairColor(ChangeEventArgs args)
+    {
+        filterByHair = null;
+        try
+        {
+            filterByHair = args.Value.ToString();
+        }catch (Exception e){}
+        ExecuteFilter();
+    }
+
+    private void FilterByEyeColor(ChangeEventArgs args)
+    {
+        filterByEye = null;
+        try
+        {
+            filterByEye = args.Value.ToString();
+        }catch (Exception e){}
+        ExecuteFilter();
+    }
+    private void FilterByOlderThan(ChangeEventArgs args)
+    {
+        filterByOlderThan = null;
+        try
+        {
+            filterByOlderThan = int.Parse(args.Value.ToString());
+        }catch (Exception e){}
+        ExecuteFilter();
+    }
+    
+    private void FilterByYoungerThan(ChangeEventArgs args)
+    {
+        filterByYoungerThan = null;
+        try
+        {
+            filterByYoungerThan = int.Parse(args.Value.ToString());
+        }catch (Exception e){}
+        ExecuteFilter();
+    }
+    private void FilterByHeavierThan(ChangeEventArgs args)
+    {
+        filterByHeavierThan = null;
+        try
+        {
+            filterByHeavierThan = int.Parse(args.Value.ToString());
+        }catch (Exception e){}
+        ExecuteFilter();
+    }
+    private void FilterByLighterThan(ChangeEventArgs args)
+    {
+        filterByLighterThan = null;
+        try
+        {
+            filterByLighterThan = int.Parse(args.Value.ToString());
+        }catch (Exception e){}
+        ExecuteFilter();
+    }
+    private void FilterBySex(ChangeEventArgs args)
+    {
+        filterBySex = null;
+        try
+        {
+            filterBySex = args.Value.ToString();
+        }catch (Exception e){}
+        ExecuteFilter();
+    }
+
     private void ExecuteFilter()
     {
         adultsToShow = adultsAll.Where(a=>
-            filterByName !=null && a.LastName.Contains(filterByName) || filterByName == null).ToList();
+            
+            (filterByName !=null && String.Format(a.FirstName+" "+a.LastName).Contains(filterByName) || filterByName == null ) 
+             
+            
+            && (filterByHair!= null && a.HairColor.Contains(filterByHair) || filterByHair ==null)
+            
+            && (filterByEye!= null && a.EyeColor.Contains(filterByEye) || filterByEye == null)
+            
+            && (filterByOlderThan !=null && a.Age >= filterByOlderThan || filterByOlderThan == null)
+            
+            && (filterByYoungerThan !=null && a.Age <= filterByYoungerThan || filterByYoungerThan == null)
+            
+            && (filterByHeavierThan !=null && a.Weight >= filterByHeavierThan || filterByHeavierThan == null)
+            
+            && (filterByLighterThan !=null && a.Age <= filterByLighterThan || filterByLighterThan == null)
+            
+            && (filterBySex!= null && a.Sex.Contains(filterBySex) || filterBySex == null)
+            
+            ).ToList();
     }
 
     private void RemoveAdult(int AdultId)
@@ -152,6 +254,7 @@ using Assignment1.Data;
         adultsAll.Remove(toRemove);
         adultsToShow.Remove(toRemove);
     }
+    
 
     private void Edit(int id)
     {
