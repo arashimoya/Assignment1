@@ -91,7 +91,7 @@ using Models;
 #nullable disable
 #nullable restore
 #line 3 "C:\Users\arasi\RiderProjects\Assignment1\Assignment1\Pages\Edit.razor"
-using FileData;
+using Assignment1.Data;
 
 #line default
 #line hidden
@@ -114,12 +114,12 @@ using FileData;
 
     protected override async Task OnInitializedAsync()
     {
-        adultToEdit = FileContext.Get(Id);
+        adultToEdit = PersonService.Get(Id);
     }
 
     private void Save()
     {
-        FileContext.Update(adultToEdit);
+        PersonService.EditPerson(adultToEdit);
         NavigationManager.NavigateTo("/Adults");
     }
 
@@ -132,7 +132,7 @@ using FileData;
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private FileContext FileContext { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IPersonService PersonService { get; set; }
     }
 }
 #pragma warning restore 1591

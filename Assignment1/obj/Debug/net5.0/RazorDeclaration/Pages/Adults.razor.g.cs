@@ -96,6 +96,13 @@ using FileData;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\arasi\RiderProjects\Assignment1\Assignment1\Pages\Adults.razor"
+using Assignment1.Data;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/Adults")]
     public partial class Adults : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -105,7 +112,7 @@ using FileData;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 75 "C:\Users\arasi\RiderProjects\Assignment1\Assignment1\Pages\Adults.razor"
+#line 76 "C:\Users\arasi\RiderProjects\Assignment1\Assignment1\Pages\Adults.razor"
        
     private IList<Adult> adultsAll;
     private IList<Adult> adultsToShow;
@@ -116,7 +123,7 @@ using FileData;
     protected override async Task OnInitializedAsync()
     {
         adultsAll = new List<Adult>();
-        adultsAll = FileLoader.Adults;
+        adultsAll = PersonService.GetAll();
         adultsToShow = new List<Adult>();
         adultsToShow = adultsAll;
     }
@@ -141,7 +148,7 @@ using FileData;
     private void RemoveAdult(int AdultId)
     {
         Adult toRemove = adultsAll.First(a => a.Id == AdultId);
-        FileLoader.RemoveAdult(AdultId);
+        PersonService.RemovePerson(AdultId);
         adultsAll.Remove(toRemove);
         adultsToShow.Remove(toRemove);
     }
@@ -154,7 +161,7 @@ using FileData;
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private FileContext FileLoader { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IPersonService PersonService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }

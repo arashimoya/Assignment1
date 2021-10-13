@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Assignment1.Data;
 using FileData;
-using LoginExample.Authentication;
+using Assignment1.Authentication;
 using Microsoft.AspNetCore.Components.Authorization;
 
 namespace Assignment1
@@ -32,6 +32,7 @@ namespace Assignment1
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<FileContext>();
+            services.AddSingleton<IPersonService, PersonServiceImpl>();
             services.AddScoped<IUserService, UserServiceImpl>();
             services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
             

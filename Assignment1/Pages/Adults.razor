@@ -1,8 +1,9 @@
 ﻿@page "/Adults"
 @using Models
 @using FileData
+@using Assignment1.Data
 @inject NavigationManager NavigationManager
-@inject FileContext FileLoader
+@inject IPersonService PersonService
 <h3>Adults</h3>
 <div>
     Filter by Name: <input type="text" @oninput="((arg)=>FilterByName(arg))" style="width: 50px"/>
@@ -82,7 +83,7 @@
     protected override async Task OnInitializedAsync()
     {
         adultsAll = new List<Adult>();
-        adultsAll = FileLoader.Adults;
+        adultsAll = PersonService.GetAll();
         adultsToShow = new List<Adult>();
         adultsToShow = adultsAll;
     }
@@ -107,7 +108,7 @@
     private void RemoveAdult(int AdultId)
     {
         Adult toRemove = adultsAll.First(a => a.Id == AdultId);
-        FileLoader.RemoveAdult(AdultId);
+        PersonService.RemovePerson(AdultId);
         adultsAll.Remove(toRemove);
         adultsToShow.Remove(toRemove);
     }

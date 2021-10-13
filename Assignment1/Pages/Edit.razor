@@ -1,7 +1,7 @@
 ﻿@page "/Edit/{Id:int}"
 @using Models
-@using FileData
-@inject FileContext FileContext
+@using Assignment1.Data
+@inject IPersonService PersonService
 @inject NavigationManager NavigationManager
 <h3>Edit Adult(@Id)</h3>
 
@@ -68,12 +68,12 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        adultToEdit = FileContext.Get(Id);
+        adultToEdit = PersonService.Get(Id);
     }
 
     private void Save()
     {
-        FileContext.Update(adultToEdit);
+        PersonService.EditPerson(adultToEdit);
         NavigationManager.NavigateTo("/Adults");
     }
 

@@ -253,5 +253,50 @@
     "Weight": 85,
     "Height": 186,
     "Sex": "M"
+  },
+  {
+    "JobTitle": {
+      "JobTitle": "Deez nuts",
+      "Salary": 20000
+    },
+    "Id": 18,
+    "FirstName": "Jakub",
+    "LastName": "Gmiterek",
+    "HairColor": "Black",
+    "EyeColor": "Grey",
+    "Age": 21,
+    "Weight": 75,
+    "Height": 200,
+    "Sex": "Never"
+  },
+  {
+    "JobTitle": {
+      "JobTitle": "Unemployed",
+      "Salary": 0
+    },
+    "Id": 19,
+    "FirstName": "Dan",
+    "LastName": "Pintea",
+    "HairColor": "Black",
+    "EyeColor": "hazel",
+    "Age": 87,
+    "Weight": 6,
+    "Height": 656,
+    "Sex": "Never"
+  },
+  {
+    "JobTitle": {
+      "JobTitle": null,
+      "Salary": 0
+    },
+    "Id": 20,
+    "FirstName": "Adam",
+    "LastName": "Arasimopwicz",
+    "HairColor": "wryg8u",
+    "EyeColor": "ybuofv",
+    "Age": 20,
+    "Weight": 222,
+    "Height": 222,
+    "Sex": "never"
   }
 ]

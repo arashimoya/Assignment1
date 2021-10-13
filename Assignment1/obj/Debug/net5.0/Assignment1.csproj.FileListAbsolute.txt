@@ -61,3 +61,6 @@ C:\Users\arasi\RiderProjects\Assignment1\Assignment1\obj\Debug\net5.0\RazorDecla
 C:\Users\arasi\RiderProjects\Assignment1\Assignment1\obj\Debug\net5.0\Razor\Pages\Edit.razor.g.cs
 C:\Users\arasi\RiderProjects\Assignment1\Assignment1\obj\Debug\net5.0\RazorDeclaration\Pages\Login.razor.g.cs
 C:\Users\arasi\RiderProjects\Assignment1\Assignment1\obj\Debug\net5.0\Razor\Pages\Login.razor.g.cs
+C:\Users\arasi\RiderProjects\Assignment1\Assignment1\obj\Debug\net5.0\RazorDeclaration\Pages\Register.razor.g.cs
+C:\Users\arasi\RiderProjects\Assignment1\Assignment1\obj\Debug\net5.0\Razor\Pages\Register.razor.g.cs
+C:\Users\arasi\RiderProjects\Assignment1\Assignment1\bin\Debug\net5.0\users.json

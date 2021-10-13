@@ -1,27 +1,28 @@
-﻿@page "/Login"
-@using LoginExample.Authentication
-@using System.ComponentModel.DataAnnotations
+﻿@page "/login"
 @namespace LoginComponent
+@using Assignment1.Authentication
 
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
+
 <AuthorizeView>
     <NotAuthorized>
         <div class="form-group">
-            <label>Username:</label>
+            <label>User name:</label>
             <input type="text" placeholder="username" @bind-value="username"/>
         </div>
         <div class="form-group">
-            <label>Password:</label>
+            <label>Password</label>
             <input type="password" placeholder="password" @bind-value="password"/>
         </div>
         <div style="color:red">@errorMessage</div>
-        
+
         <a href="" @onclick="PerformLogin">
             Login
         </a>
     </NotAuthorized>
     <Authorized>
+        <p>Logged in as @username</p>
         <a href="" @onclick="PerformLogout">
             Log out
         </a>
@@ -29,41 +30,28 @@
 </AuthorizeView>
 
 @code {
-    [Required]
     private string username;
-    [Required]
     private string password;
     private string errorMessage;
 
-    public async Task PerformLogin()
-    {
+    public async Task PerformLogin() {
         errorMessage = "";
-        try
-        {
+        try {
             ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(username, password);
-            username = "";
             password = "";
-            
-
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             errorMessage = e.Message;
         }
     }
 
-    public async Task PerformLogout()
-    {
+    public async Task PerformLogout() {
         errorMessage = "";
         username = "";
         password = "";
-        try
-        {
+        try {
             ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
-            
-        }
-        catch (Exception e)
-        {
-        }
+            NavigationManager.NavigateTo("/");
+        } catch (Exception e) { }
     }
+
 }

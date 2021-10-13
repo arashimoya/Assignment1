@@ -1,8 +1,8 @@
 ﻿@page "/AddAdult"
 @using Microsoft.AspNetCore.Components
 @using Models
-@using FileData
-@inject FileContext FileContext
+@using Assignment1.Data
+@inject IPersonService PersonService
 @inject NavigationManager NavigationManager
 <h3>Add Adult</h3>
 <EditForm Model="@newAdultItem" OnValidSubmit="@AddNewAdult">
@@ -57,7 +57,7 @@
 
     private void AddNewAdult()
     {
-        FileContext.AddAdult(newAdultItem);
+        PersonService.AddPerson(newAdultItem);
         NavigationManager.NavigateTo("/Adults");
     }
 }

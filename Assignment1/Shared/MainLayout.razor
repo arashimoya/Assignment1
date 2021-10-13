@@ -1,3 +1,4 @@
+@using LoginComponent
 @inherits LayoutComponentBase
 
 <div class="page">
@@ -5,10 +6,17 @@
         <NavMenu/>
     </div>
 
+    
     <div class="main">
-        <div class="top-row px-4">
-            <a href="/Login">Login</a>
-        </div>
+        
+            
+            <div class="top-row px-4">
+                <Login/>
+                <AuthorizeView><NotAuthorized><a href="/register">Not registered?</a></NotAuthorized></AuthorizeView>
+                
+            </div>
+            
+        
 
         <div class="content px-4">
             @Body

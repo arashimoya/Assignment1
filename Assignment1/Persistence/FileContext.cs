@@ -11,17 +11,28 @@ namespace FileData
     {
         //public IList<Family> Families { get; private set; }
         public IList<Adult> Adults { get; private set; }
+        public IList<User> Users { get; private set; }
 
         //private readonly string familiesFile = "families.json";
         private readonly string adultsFile = "adults.json";
+        private readonly string usersFile = "users.json";
 
         public FileContext()
         {
             //Families = File.Exists(familiesFile) ? ReadData<Family>(familiesFile) : new List<Family>();
             Adults = File.Exists(adultsFile) ? ReadData<Adult>(adultsFile) : new List<Adult>();
-            
+            Users = File.Exists(usersFile) ? ReadUserData<User>(usersFile) : new List<User>();
+
         }
-        
+
+        private IList<T> ReadUserData<T>(string s)
+        {
+            using (var jsonReader = File.OpenText(usersFile))
+            {
+                return JsonSerializer.Deserialize<List<T>>(jsonReader.ReadToEnd());
+            }
+        }
+
 
         private IList<T> ReadData<T>(string s)
         {
@@ -30,41 +41,9 @@ namespace FileData
             {
                 return JsonSerializer.Deserialize<List<T>>(jsonReader.ReadToEnd());
             }
+            
         }
-
-        public void AddAdult(Adult adult)
-        {
-            int max = Adults.Max(adult => adult.Id);
-            adult.Id = (++max);
-            Adults.Add(adult);
-            SaveChanges();
-        }
-
-        public void RemoveAdult(int AdultId)
-        {
-            Adult toRemove = Adults.First(a => a.Id == AdultId);
-            Adults.Remove(toRemove);
-            SaveChanges();
-        }
-
-        public void Update(Adult adult)
-        {
-            Adult toUpdate = Adults.First(a => a.Id == adult.Id);
-            toUpdate.FirstName = adult.FirstName;
-            toUpdate.LastName = adult.LastName;
-            toUpdate.HairColor = adult.HairColor;
-            toUpdate.EyeColor = adult.EyeColor;
-            toUpdate.Age = adult.Age;
-            toUpdate.Weight = adult.Weight;
-            toUpdate.Height = adult.Height;
-            toUpdate.Sex = adult.Sex;
-            SaveChanges();
-        }
-
-        public Adult Get(int id)
-        {
-            return Adults.FirstOrDefault(a => a.Id == id);
-        }
+        
         
         public void SaveChanges()
         {
@@ -79,7 +58,7 @@ namespace FileData
             }
             */
             
-            //adding persons
+            
             // storing persons
             string jsonAdults = JsonSerializer.Serialize(Adults, new JsonSerializerOptions
             {
@@ -89,6 +68,18 @@ namespace FileData
             {
                 outputFile.Write(jsonAdults);
             }
+            
+            //storing users
+
+            string jsonUsers = JsonSerializer.Serialize(Users, new JsonSerializerOptions
+            {
+                WriteIndented = true
+            });
+            using (StreamWriter outputFile = new StreamWriter(usersFile, false))
+            {
+                outputFile.Write(jsonUsers);
+            }
+            
         }
     }
 }

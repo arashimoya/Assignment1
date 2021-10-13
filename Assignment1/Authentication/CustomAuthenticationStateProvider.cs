@@ -10,10 +10,11 @@ using Microsoft.JSInterop;
 using Models;
 
 
-namespace LoginExample.Authentication {
+
+namespace Assignment1.Authentication {
 public class CustomAuthenticationStateProvider : AuthenticationStateProvider {
     private readonly IJSRuntime jsRuntime;
-    private readonly IUserService userService;
+    private  IUserService userService;
 
     private User cachedUser;
 
@@ -40,11 +41,8 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider {
 
     public void ValidateLogin(string username, string password) {
         Console.WriteLine("Validating log in");
-        if (string.IsNullOrEmpty(username))
-        {
-            throw new Exception("Enter username");
-        }
-        if (string.IsNullOrEmpty(password)) {throw new Exception("Enter password");}
+        if (string.IsNullOrEmpty(username)) throw new Exception("Enter username");
+        if (string.IsNullOrEmpty(password)) throw new Exception("Enter password");
 
         ClaimsIdentity identity = new ClaimsIdentity();
         try {
@@ -68,9 +66,21 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider {
         NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(user)));
     }
 
+    public void ValidateRegister(string username, string password, string confirmPassword)
+    {
+        if (string.IsNullOrEmpty(username)) throw new Exception("Enter username");
+        if (string.IsNullOrEmpty(password)) throw new Exception("Enter password");
+        if (string.IsNullOrEmpty(confirmPassword)) throw new Exception("Confirm password");
+        if (userService.DoesUsernameAlreadyExist(username)) throw new Exception("This username is already taken");
+        if (!password.Equals(confirmPassword)) throw new Exception("Passwords do not match!");
+        
+        userService.RegisterUser(username,password);
+    }
+
     private ClaimsIdentity SetupClaimsForUser(User user) {
         List<Claim> claims = new List<Claim>();
         claims.Add(new Claim(ClaimTypes.Name, user.Username));
+        
 
         ClaimsIdentity identity = new ClaimsIdentity(claims, "apiauth_type");
         return identity;

@@ -97,7 +97,7 @@ using Models;
 #nullable disable
 #nullable restore
 #line 4 "C:\Users\arasi\RiderProjects\Assignment1\Assignment1\Pages\AddAdult.razor"
-using FileData;
+using Assignment1.Data;
 
 #line default
 #line hidden
@@ -117,7 +117,7 @@ using FileData;
 
     private void AddNewAdult()
     {
-        FileContext.AddAdult(newAdultItem);
+        PersonService.AddPerson(newAdultItem);
         NavigationManager.NavigateTo("/Adults");
     }
 
@@ -125,7 +125,7 @@ using FileData;
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private FileContext FileContext { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IPersonService PersonService { get; set; }
     }
 }
 #pragma warning restore 1591

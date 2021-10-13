@@ -82,6 +82,13 @@ using Assignment1.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 1 "C:\Users\arasi\RiderProjects\Assignment1\Assignment1\Shared\MainLayout.razor"
+using LoginComponent;
+
+#line default
+#line hidden
+#nullable disable
     public partial class MainLayout : LayoutComponentBase
     {
         #pragma warning disable 1998

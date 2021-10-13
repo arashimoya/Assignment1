@@ -83,20 +83,13 @@ using Assignment1.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\arasi\RiderProjects\Assignment1\Assignment1\Pages\Login.razor"
-using LoginExample.Authentication;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 3 "C:\Users\arasi\RiderProjects\Assignment1\Assignment1\Pages\Login.razor"
-using System.ComponentModel.DataAnnotations;
+using Assignment1.Authentication;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/Login")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/login")]
     public partial class Login : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -105,45 +98,32 @@ using System.ComponentModel.DataAnnotations;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 31 "C:\Users\arasi\RiderProjects\Assignment1\Assignment1\Pages\Login.razor"
+#line 32 "C:\Users\arasi\RiderProjects\Assignment1\Assignment1\Pages\Login.razor"
        
-    [Required]
     private string username;
-    [Required]
     private string password;
     private string errorMessage;
 
-    public async Task PerformLogin()
-    {
+    public async Task PerformLogin() {
         errorMessage = "";
-        try
-        {
+        try {
             ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(username, password);
-            username = "";
             password = "";
-            
-
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             errorMessage = e.Message;
         }
     }
 
-    public async Task PerformLogout()
-    {
+    public async Task PerformLogout() {
         errorMessage = "";
         username = "";
         password = "";
-        try
-        {
+        try {
             ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
-            
-        }
-        catch (Exception e)
-        {
-        }
+            NavigationManager.NavigateTo("/");
+        } catch (Exception e) { }
     }
+
 
 #line default
 #line hidden
